@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130EB82C286BFBB500BDE4EB /* UISearchController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 130EB82B286BFBB500BDE4EB /* UISearchController+MemoryLeak.m */; };
+		130EB82F286BFBD300BDE4EB /* UITextField+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 130EB82E286BFBD300BDE4EB /* UITextField+MemoryLeak.m */; };
 		B32AAB321D767E59001485FF /* UITouch+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AAB311D767E59001485FF /* UITouch+MemoryLeak.m */; };
 		B3667E4E1D38ADF6002B55DE /* MLeakedObjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3667E4D1D38ADF6002B55DE /* MLeakedObjectProxy.m */; };
 		B3667E721D3BA78E002B55DE /* MLeaksMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = B3667E711D3BA78E002B55DE /* MLeaksMessenger.m */; };
@@ -38,6 +40,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		130EB82A286BFBB500BDE4EB /* UISearchController+MemoryLeak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISearchController+MemoryLeak.h"; sourceTree = "<group>"; };
+		130EB82B286BFBB500BDE4EB /* UISearchController+MemoryLeak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISearchController+MemoryLeak.m"; sourceTree = "<group>"; };
+		130EB82D286BFBD300BDE4EB /* UITextField+MemoryLeak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+MemoryLeak.h"; sourceTree = "<group>"; };
+		130EB82E286BFBD300BDE4EB /* UITextField+MemoryLeak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MemoryLeak.m"; sourceTree = "<group>"; };
 		5E297F00748C1FFA737EEFB0 /* Pods-MLeaksFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLeaksFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLeaksFinder/Pods-MLeaksFinder.release.xcconfig"; sourceTree = "<group>"; };
 		6C69FD6BA6E3CCAC5168D790 /* libPods-MLeaksFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MLeaksFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EF182415984ED6E908B442 /* Pods-MLeaksFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLeaksFinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLeaksFinder/Pods-MLeaksFinder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +129,10 @@
 				B3ADE17F1C1BD4B200AA4F63 /* UIViewController+MemoryLeak.m */,
 				B32AAB301D767E59001485FF /* UITouch+MemoryLeak.h */,
 				B32AAB311D767E59001485FF /* UITouch+MemoryLeak.m */,
+				130EB82A286BFBB500BDE4EB /* UISearchController+MemoryLeak.h */,
+				130EB82B286BFBB500BDE4EB /* UISearchController+MemoryLeak.m */,
+				130EB82D286BFBD300BDE4EB /* UITextField+MemoryLeak.h */,
+				130EB82E286BFBD300BDE4EB /* UITextField+MemoryLeak.m */,
 			);
 			path = MLeaksFinder;
 			sourceTree = "<group>";
@@ -151,11 +161,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3ADE1751C1BD1D600AA4F63 /* Build configuration list for PBXNativeTarget "MLeaksFinder" */;
 			buildPhases = (
+				34E917B8F996BABE0D54A858 /* [CP] Check Pods Manifest.lock */,
 				1E51A1E3538164E48103EBFB /* 📦 Check Pods Manifest.lock */,
 				B3ADE1681C1BD1D600AA4F63 /* Sources */,
 				B3ADE1691C1BD1D600AA4F63 /* Frameworks */,
 				B3ADE16A1C1BD1D600AA4F63 /* CopyFiles */,
-				C5C5444B869098CC15440C05 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,6 +195,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = B3ADE1631C1BD1D600AA4F63;
@@ -213,19 +224,26 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C5C5444B869098CC15440C05 /* 📦 Copy Pods Resources */ = {
+		34E917B8F996BABE0D54A858 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MLeaksFinder-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MLeaksFinder/Pods-MLeaksFinder-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -238,11 +256,13 @@
 				B3C512C51CE3368B0032C2C8 /* UIApplication+MemoryLeak.m in Sources */,
 				B3ADE17A1C1BD29600AA4F63 /* UIView+MemoryLeak.m in Sources */,
 				B3ADE1861C1BD5CC00AA4F63 /* UIPageViewController+MemoryLeak.m in Sources */,
+				130EB82C286BFBB500BDE4EB /* UISearchController+MemoryLeak.m in Sources */,
 				B3667E4E1D38ADF6002B55DE /* MLeakedObjectProxy.m in Sources */,
 				B3667E721D3BA78E002B55DE /* MLeaksMessenger.m in Sources */,
 				B3ADE17D1C1BD2F000AA4F63 /* NSObject+MemoryLeak.m in Sources */,
 				B3ADE18C1C1BD74700AA4F63 /* UISplitViewController+MemoryLeak.m in Sources */,
 				B3ADE1801C1BD4B200AA4F63 /* UIViewController+MemoryLeak.m in Sources */,
+				130EB82F286BFBD300BDE4EB /* UITextField+MemoryLeak.m in Sources */,
 				B3ADE1831C1BD54B00AA4F63 /* UINavigationController+MemoryLeak.m in Sources */,
 				B32AAB321D767E59001485FF /* UITouch+MemoryLeak.m in Sources */,
 				B3ADE1891C1BD6F000AA4F63 /* UITabBarController+MemoryLeak.m in Sources */,

@@ -16,7 +16,6 @@
 #import "NSObject+MemoryLeak.h"
 #import <objc/runtime.h>
 #import <UIKit/UIKit.h>
-//#import <WMFeishuBot/WMFeishuBot.h>
 
 #if _INTERNAL_MLF_RC_ENABLED
 #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
@@ -24,8 +23,7 @@
 
 static NSMutableSet *leakedObjectPtrs;
 
-static NSString * const kWMDoraemonMemoryLeakFeishuKey = @"wm_doraemon_memory_leak_key_feishu_key";
-static NSString * const kWMDoraemonMemoryLeakAlertKey = @"wm_doraemon_memory_leak_alert_key";
+static NSString * const kDoraemonMemoryLeakAlertKey = @"doraemon_memory_leak_alert_key";
 
 @interface MLeakedObjectProxy ()<UIAlertViewDelegate>
 @property (nonatomic, weak) id object;
@@ -66,19 +64,7 @@ static NSString * const kWMDoraemonMemoryLeakAlertKey = @"wm_doraemon_memory_lea
     [leakedObjectPtrs addObject:proxy.objectPtr];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    id isExistFeishuKey = [userDefaults objectForKey:kWMDoraemonMemoryLeakFeishuKey];
-    if (!isExistFeishuKey) {
-        [userDefaults setBool:YES forKey:kWMDoraemonMemoryLeakFeishuKey];
-    }
-    
-    BOOL memoryLeakFeishu = [userDefaults boolForKey:kWMDoraemonMemoryLeakFeishuKey];
-    BOOL memoryLeakAlert = [userDefaults boolForKey:kWMDoraemonMemoryLeakAlertKey];
-    
-    NSString *viewStack = [NSString stringWithFormat:@"%@", proxy.viewStack];
-    
-    if (memoryLeakFeishu) {
-        [self sendFeishuNotifacation:viewStack];
-    }
+    BOOL memoryLeakAlert = [userDefaults boolForKey:kDoraemonMemoryLeakAlertKey];
     
     if (memoryLeakAlert) {
         #if _INTERNAL_MLF_RC_ENABLED
@@ -91,29 +77,6 @@ static NSString * const kWMDoraemonMemoryLeakAlertKey = @"wm_doraemon_memory_lea
                                 message:[NSString stringWithFormat:@"%@", proxy.viewStack]];
         #endif
     }
-}
-
-+ (void)sendFeishuNotifacation:(NSString *)viewStack {
-//    NSString *webhook = @"";
-//
-//    NSArray *contentArray = @[
-//        @[
-//            @{
-//                @"tag": @"text",
-//                @"text": @"堆栈信息如下："
-//            }
-//        ],
-//        @[
-//            @{
-//                @"tag": @"text",
-//                @"text": viewStack
-//            }
-//        ]
-//    ];
-//
-//    [WMFeishuBot sendRichTextMessageWithTitle:@"内存泄漏通知"
-//                                 contentArray:contentArray
-//                                      webhook:webhook];
 }
 
 - (void)dealloc {
