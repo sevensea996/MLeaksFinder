@@ -6,6 +6,6 @@ target 'MLeaksFinder' do
   # use_frameworks!
 
   # Pods for MLeaksFinder
-  pod 'FBRetainCycleDetector'
+  pod 'FBRetainCycleDetector', :git => 'https://github.com/facebook/FBRetainCycleDetector.git' ,:branch => 'main'
 
 end

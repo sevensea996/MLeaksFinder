@@ -8,7 +8,7 @@ QQ group: 482121244
 
 # Installation
 ```
-pod 'MLeaksFinder'
+pod 'MLeaksFinder', :git => 'https://github.com/sevensea996/MLeaksFinder.git'
 ```
 MLeaksFinder comes into effect after `pod install`, there is no need to add any code nor to import any header file.
 
